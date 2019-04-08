@@ -45,9 +45,41 @@ public class UredajDao implements UredajDaoInterface  {
 		return null;
 	}
 
-	public int remove(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int remove(int objectType, long id) {
+
+		String tableName = null;
+		String recordId = null;
+
+		if (objectType == 1) {
+			tableName = "uredaj";
+			recordId = "id";
+
+		} else if (objectType == 2) {
+			tableName = "user";
+			recordId = "id_user";
+
+		} else if (objectType == 3) {
+			tableName = "unit";
+			recordId = "id_unit";
+
+		} else if (objectType == 4) {
+			tableName = "wine_event";
+			recordId = "id_wine_event";
+
+		} else {
+			log.info("ERROR SQL QUERY delete method - wrong parameters");
+		}
+
+		try {
+			String sqlDelete = "DELETE from " + tableName + " WHERE " + recordId + "=?";
+			Object[] args = new Object[] { id };
+			jdbcTemplate.update(sqlDelete, args);
+			return 1;
+		} catch (Exception e) {
+			log.info("ERROR SQL QUERY delete from table: " + tableName + "\n" + e);
+			return -1;
+		}
+
 	}
 
 	public Uredaj getOne(Long id) {

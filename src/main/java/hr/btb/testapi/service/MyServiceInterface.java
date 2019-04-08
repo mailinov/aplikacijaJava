@@ -23,5 +23,5 @@ public interface MyServiceInterface {
 		void update(long id, Uredaj uredaj);
 		
 	//Delete a records
-		void delete(long id);
+		public int delete(int objType, long id) throws SQLException;
 }

@@ -17,6 +17,6 @@ public interface UredajDaoInterface {
 	
 	public List<Uredaj> getAll();
 	
-	public int remove(Object obj);
+	public int remove(int objType, long id);
 
 }

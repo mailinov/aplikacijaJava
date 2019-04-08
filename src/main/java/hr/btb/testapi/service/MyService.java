@@ -34,9 +34,8 @@ public class MyService implements MyServiceInterface {
 		
 	}
 
-	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+	public int delete(int objectType, long id) throws SQLException {
+		return dao.remove(objectType, id);
 	}
 	
 	

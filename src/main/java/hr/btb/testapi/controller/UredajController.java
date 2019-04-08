@@ -1,6 +1,7 @@
 package hr.btb.testapi.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,5 +70,34 @@ public class UredajController {
 		 
 	//----------------------------------------- DELETE -------------------------------------------------------------------
 		
-		//unos komentara
+		//brisanje uređaja iz tablice
+		/* @RequestMapping(value = "/deleteuredaj", method = RequestMethod.DELETE)
+		 	public int deleteUredaj(@RequestBody HashMap<Integer, Uredaj> uredaj) {
+			 
+		 	 Uredaj receivedUredaj = uredaj.get("uredaj");
+		 	 
+		 	log.info("----------------------------------------RECEIVED : " + receivedUredaj);
+			 
+			 	long id =  receivedUredaj.getId();
+						
+			try {
+				 
+				int Id = myServis.delete(1, id);
+				
+			} catch(Exception e) {
+				
+				log.info("------------------------------Problem remove uredaj! " + e);
+			}
+			
+				return 1;
+	 }*/
+		 @RequestMapping(value="/deleteuredaj/{id}", method=RequestMethod.DELETE)
+		 public String deleteMemeber(@PathVariable Integer id) throws SQLException {
+
+			 myServis.delete(1, id);
+
+		     return "svasta";
+
+		 } 
+		 
 	}
