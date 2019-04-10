@@ -8,8 +8,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -107,25 +105,21 @@ public class UredajController {
 		 
 //-----------------------METODA POST  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
 		 
-		 @SuppressWarnings({ "unchecked", "rawtypes" })
-			@RequestMapping(value = "/getAllUredaji", method = RequestMethod.GET)
-			public ResponseEntity<List<Uredaj>> getAllDjelatnici() throws SQLException {
-
-				ResponseEntity response;
-
+		 @RequestMapping(value = "/getAllUredaji",  method = RequestMethod.GET)
+			@ResponseBody
+			public List<Uredaj> getUredaji() throws SQLException {
+				
+			 List<Uredaj> myList = new ArrayList<Uredaj>();
+				
 				try {
-
-					List<Uredaj> djelatnici = myServis.list();
-					response = new ResponseEntity(djelatnici, HttpStatus.OK);
-				} catch (Exception e) {
-					response = new ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR);
-					System.out.println("------------ getAllUredaj = " + e);
-					e.printStackTrace();
+					myList = (List<Uredaj>)myServis.list();
+  			  } catch (Exception e){
+					log.info("-------------Error :" + e);
 				}
-
-				return response;
-
-			}
+				
+				return myList;
+		 
+	}
 		 
 		 
 //-----------------------METODA POST  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
