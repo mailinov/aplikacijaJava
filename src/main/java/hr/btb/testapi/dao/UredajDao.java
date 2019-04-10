@@ -39,12 +39,23 @@ public class UredajDao implements UredajDaoInterface  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+	
 
 	public List<Uredaj> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		String sqlQuery = "SELECT * FROM uredaj";
+		//Object[] args = new Object[]{} ;
+		//@SuppressWarnings("unchecked")
+		List<Uredaj> myList =  (List<Uredaj>) jdbcTemplate.query(sqlQuery, new UredajRowMapper());	
+		return myList;
 	}
 
+	
+	
+	
 	public int remove(int objectType, long id) {
 
 		String tableName = null;
