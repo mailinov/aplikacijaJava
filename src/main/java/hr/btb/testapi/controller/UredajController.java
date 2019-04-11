@@ -18,49 +18,43 @@ import org.springframework.web.bind.annotation.RestController;
 import hr.btb.testapi.model.Uredaj;
 import hr.btb.testapi.service.MyServiceInterface;
 
-
 @RestController
 public class UredajController {
-	
-	
+
 	private static final Logger log = LoggerFactory.getLogger(UredajController.class);
-	
+
 	@Autowired
 	MyServiceInterface myServis;
-	
+
 //-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
-	
-		@RequestMapping(value = "/geturedaj/{id}",  method = RequestMethod.GET)
-		@ResponseBody
-		public Uredaj getUredaj(@PathVariable("id") Long id) throws SQLException {
-			
-			Uredaj uredaj = null;
-			
-			try {
-				 uredaj = (Uredaj)myServis.get(id);
-			} catch (Exception e){
-				log.info("-------------Error :" + e);
-			}
-			
-			return uredaj;
-		
+
+	@RequestMapping(value = "/geturedaj/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Uredaj getUredaj(@PathVariable("id") Long id) throws SQLException {
+
+		Uredaj uredaj = null;
+
+		try {
+			uredaj = (Uredaj) myServis.get(id);
+		} catch (Exception e) {
+			log.info("-------------Error :" + e);
 		}
-		
+		return uredaj;
+	}
+
 //-----------------------METODA POST  -------------------------------SPREMANJE UREĐAJA----------------------------------------------------------------------------------
-		
-		 @RequestMapping(value = "/saveuredaj", method = RequestMethod.POST)
-		   public int saveUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
-			 	log.info("----------------------------------------RECEIVED : " + noviuredaj.getSerial_uredaj());
-				try {	 
-					 myServis.save(noviuredaj);
-					 return 1;	
-				} catch(Exception e) {
-					
-					log.info("-------------------------------IS NOT SAVED! " + e);
-					return 0;
-				}				
-		 }
-		 
+
+	@RequestMapping(value = "/saveuredaj", method = RequestMethod.POST)
+	public String saveUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
+		log.info("----------------------------------------RECEIVED : " + noviuredaj.getSerial_uredaj());
+		try {
+			myServis.save(noviuredaj);
+			return "Spremljeno";
+		} catch (Exception e) {
+			log.info("-------------------------------IS NOT SAVED! " + e);
+			return "Nije spremljeno";
+		}
+	}
 
 //-----------------------METODA DELETE  -------------------------------BRISANJE UREĐAJA----------------------------------------------------------------------------------
 
@@ -70,36 +64,39 @@ public class UredajController {
 			myServis.delete(id);
 			return "obrisano";
 		} catch (Exception e) {
-
-			log.info("------------------------------Problem remove uredaj! " + e);
+			log.info("------------------------------Problem kod brisanja uredaj! " + e);
+			return "Nije obrisano";
 		}
-		return "Nije obrisano";
+
 	}
-		 
+
 //-----------------------METODA GET  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
-		 
-		 @RequestMapping(value = "/getAllUredaji",  method = RequestMethod.GET)
-			@ResponseBody
-			public List<Uredaj> getUredaji() throws SQLException {
-				
-			 List<Uredaj> myList = new ArrayList<Uredaj>();
-				
-				try {
-					myList = (List<Uredaj>)myServis.list();
-  			  } catch (Exception e){
-					log.info("-------------Error :" + e);
-				}
-				
-				return myList;
-		 
+
+	@RequestMapping(value = "/getAllUredaji", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Uredaj> getUredaji() throws SQLException {
+
+		List<Uredaj> myList = new ArrayList<Uredaj>();
+
+		try {
+			myList = (List<Uredaj>) myServis.list();
+		} catch (Exception e) {
+			log.info("------------------------------Problem kod dohvaćanja liste uredaja!" + e);
+		}
+		return myList;
 	}
-		 
-		 
+
 //-----------------------METODA POST  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
-		 @RequestMapping(value = "/updateuredaj", method = RequestMethod.POST)
-		   public int upUredaj(@RequestBody Uredaj noviuredaj) {
-					 myServis.uredajUpdate(noviuredaj);
-					 return 1;	
-				}				
-		
+	@RequestMapping(value = "/updateuredaj", method = RequestMethod.POST)
+	public String upUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
+		try {
+			myServis.uredajUpdate(noviuredaj);
+			return "Uređaj je ažuriran";
+		} catch (Exception e) {
+			log.info("------------------------------Problem ažuriranja uredaja! " + e);
+			return "Uređaj nije ažuriran";
+		}
+
+	}
+
 }

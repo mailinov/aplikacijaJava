@@ -7,16 +7,14 @@ import hr.btb.testapi.model.Uredaj;
 
 public interface UredajDaoInterface {
 
-//public void setDataSource(DataSource ds);
-	
 	public int insertOne(Uredaj obj) throws SQLException;
-	
-	public Uredaj getOne(Long id);
-	
-	public int update(Uredaj obj);
-	
+
+	public Uredaj getOne(Long id) throws SQLException;
+
+	public int update(Uredaj obj) throws SQLException;
+
 	public List<Uredaj> getAll() throws SQLException;
-	
-	public int remove(long id);
+
+	public int remove(long id) throws SQLException;
 
 }

@@ -12,7 +12,7 @@ import hr.btb.testapi.model.Uredaj;
 
 @Service("myService")
 public class MyService implements MyServiceInterface {
-	
+
 	@Autowired
 	UredajDaoInterface dao;
 
@@ -20,24 +20,22 @@ public class MyService implements MyServiceInterface {
 		return dao.insertOne(uredaj);
 	}
 
-	public Uredaj get(long id) {
+	public Uredaj get(long id) throws SQLException {
 		return dao.getOne(id);
 	}
 
-	public List<Uredaj> list()  throws SQLException {
+	public List<Uredaj> list() throws SQLException {
 		return dao.getAll();
 	}
 
-	public int uredajUpdate(Uredaj uredaj) {
+	public int uredajUpdate(Uredaj uredaj) throws SQLException {
 		// TODO Auto-generated method stub
 		return dao.update(uredaj);
-		
+
 	}
 
 	public int delete(long id) throws SQLException {
 		return dao.remove(id);
 	}
-	
-	
 
 }
