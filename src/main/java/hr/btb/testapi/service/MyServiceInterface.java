@@ -16,12 +16,12 @@ public interface MyServiceInterface {
 	//Get a single record	
 		Uredaj get (long id);
 		
-	//get all recrds
-		List<Uredaj> list();
+	//get all records
+		List<Uredaj> list()  throws SQLException;
 		
 	//Update the records
-		void update(long id, Uredaj uredaj);
+		public int uredajUpdate(Uredaj uredaj);
 		
 	//Delete a records
-		public int delete(int objType, long id) throws SQLException;
+		public int delete(long id) throws SQLException;
 }

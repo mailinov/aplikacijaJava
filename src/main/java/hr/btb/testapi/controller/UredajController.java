@@ -50,60 +50,33 @@ public class UredajController {
 		
 		 @RequestMapping(value = "/saveuredaj", method = RequestMethod.POST)
 		   public int saveUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
-			 
-			 
 			 	log.info("----------------------------------------RECEIVED : " + noviuredaj.getSerial_uredaj());
-			 	
-				
-				
-				try {
-					 
+				try {	 
 					 myServis.save(noviuredaj);
-					 return 1;
-					
+					 return 1;	
 				} catch(Exception e) {
 					
 					log.info("-------------------------------IS NOT SAVED! " + e);
 					return 0;
-				}
-				
-					
+				}				
 		 }
 		 
 
 //-----------------------METODA DELETE  -------------------------------BRISANJE UREĐAJA----------------------------------------------------------------------------------
-		
-		//brisanje uređaja iz tablice
-		/* @RequestMapping(value = "/deleteuredaj", method = RequestMethod.DELETE)
-		 	public int deleteUredaj(@RequestBody HashMap<Integer, Uredaj> uredaj) {
-			 
-		 	 Uredaj receivedUredaj = uredaj.get("uredaj");
-		 	 
-		 	log.info("----------------------------------------RECEIVED : " + receivedUredaj);
-			 
-			 	long id =  receivedUredaj.getId();
-						
-			try {
-				 
-				int Id = myServis.delete(1, id);
-				
-			} catch(Exception e) {
-				
-				log.info("------------------------------Problem remove uredaj! " + e);
-			}
-			
-				return 1;
-	 }*/
-		 @RequestMapping(value="/deleteuredaj/{id}", method=RequestMethod.DELETE)
-		 public String deleteMemeber(@PathVariable Integer id) throws SQLException {
 
-			 myServis.delete(1, id);
+	@RequestMapping(value = "/deleteuredaj/{id}", method = RequestMethod.DELETE)
+	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
+		try {
+			myServis.delete(id);
+			return "obrisano";
+		} catch (Exception e) {
 
-		     return "obrisano";
-
-		 }
+			log.info("------------------------------Problem remove uredaj! " + e);
+		}
+		return "Nije obrisano";
+	}
 		 
-//-----------------------METODA POST  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
+//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
 		 
 		 @RequestMapping(value = "/getAllUredaji",  method = RequestMethod.GET)
 			@ResponseBody
@@ -123,4 +96,10 @@ public class UredajController {
 		 
 		 
 //-----------------------METODA POST  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
+		 @RequestMapping(value = "/updateuredaj", method = RequestMethod.POST)
+		   public int upUredaj(@RequestBody Uredaj noviuredaj) {
+					 myServis.uredajUpdate(noviuredaj);
+					 return 1;	
+				}				
+		
 }

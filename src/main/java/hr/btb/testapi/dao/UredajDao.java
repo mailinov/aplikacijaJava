@@ -21,78 +21,44 @@ public class UredajDao implements UredajDaoInterface  {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-
+//------------------------------------------------------SPREMANJE JEDNOG UREĐAJA KAO OBJEKT----------------------------------------------------------------------------------
 	public int insertOne(Uredaj obj) throws SQLException {
 		String sqlQuery = "INSERT INTO uredaj (imei, model, proizvodac, serial_uredaj, tip) VALUES (?,?,?,?,?)";
 		int vrati=0;
 		System.out.println("---------------getSerial="+obj.getSerial_uredaj());
-		try {
-			vrati = jdbcTemplate.update(sqlQuery, obj.getImei() , obj.getModel(), obj.getProizvodac(),obj.getSerial_uredaj(), obj.getTip());
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+		vrati = jdbcTemplate.update(sqlQuery, obj.getImei() , obj.getModel(), obj.getProizvodac(),obj.getSerial_uredaj(), obj.getTip());
 		return vrati;
 	}
-
-	public int update(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+//------------------------------------------------------UPDATE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
+	public int update(Uredaj obj) {
+		int vrati = 0;
+		String sqlQuery = "UPDATE uredaj SET imei=?, model=?, proizvodac=?, serial_uredaj=?, tip=? WHERE id=?;";
+		Object[] arg = new Object[]{obj.getImei() , obj.getModel(), obj.getProizvodac(),obj.getSerial_uredaj(), obj.getTip(), obj.getId()};
+		vrati = jdbcTemplate.update(sqlQuery, arg);
+		return vrati;
+		
 	}
-	
-	
-	
-
-	public List<Uredaj> getAll() {
-		
-		
+//------------------------------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
+	public List<Uredaj> getAll() throws SQLException {
 		String sqlQuery = "SELECT * FROM uredaj";
-		//Object[] args = new Object[]{} ;
-		//@SuppressWarnings("unchecked")
 		List<Uredaj> myList =  (List<Uredaj>) jdbcTemplate.query(sqlQuery, new UredajRowMapper());	
 		return myList;
-	}
-
-	
-	
-	
-	public int remove(int objectType, long id) {
-
+	}	
+//------------------------------------------------------BRISANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------	
+	public int remove(long id) {
 		String tableName = null;
 		String recordId = null;
-
-		if (objectType == 1) {
+		
 			tableName = "uredaj";
 			recordId = "id";
-
-		} else if (objectType == 2) {
-			tableName = "user";
-			recordId = "id_user";
-
-		} else if (objectType == 3) {
-			tableName = "unit";
-			recordId = "id_unit";
-
-		} else if (objectType == 4) {
-			tableName = "wine_event";
-			recordId = "id_wine_event";
-
-		} else {
-			log.info("ERROR SQL QUERY delete method - wrong parameters");
-		}
-
-		try {
+		
 			String sqlDelete = "DELETE from " + tableName + " WHERE " + recordId + "=?";
 			Object[] args = new Object[] { id };
 			jdbcTemplate.update(sqlDelete, args);
 			return 1;
-		} catch (Exception e) {
-			log.info("ERROR SQL QUERY delete from table: " + tableName + "\n" + e);
-			return -1;
-		}
-
+		
 	}
-
+//------------------------------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
 	public Uredaj getOne(Long id) {
 		String sqlQuery = "SELECT id, imei, model, proizvodac, serial_uredaj, tip FROM uredaj WHERE id=?";
 		Object[] args = new Object[] {id};
@@ -102,5 +68,4 @@ public class UredajDao implements UredajDaoInterface  {
 	}
 
 	
-
 }

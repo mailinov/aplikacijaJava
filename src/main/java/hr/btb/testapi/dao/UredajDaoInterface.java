@@ -13,10 +13,10 @@ public interface UredajDaoInterface {
 	
 	public Uredaj getOne(Long id);
 	
-	public int update(int id);
+	public int update(Uredaj obj);
 	
-	public List<Uredaj> getAll();
+	public List<Uredaj> getAll() throws SQLException;
 	
-	public int remove(int objType, long id);
+	public int remove(long id);
 
 }

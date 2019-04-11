@@ -24,18 +24,18 @@ public class MyService implements MyServiceInterface {
 		return dao.getOne(id);
 	}
 
-	public List<Uredaj> list() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Uredaj> list()  throws SQLException {
+		return dao.getAll();
 	}
 
-	public void update(long id, Uredaj uredaj) {
+	public int uredajUpdate(Uredaj uredaj) {
 		// TODO Auto-generated method stub
+		return dao.update(uredaj);
 		
 	}
 
-	public int delete(int objectType, long id) throws SQLException {
-		return dao.remove(objectType, id);
+	public int delete(long id) throws SQLException {
+		return dao.remove(id);
 	}
 	
 	
