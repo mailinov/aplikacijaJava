@@ -87,8 +87,8 @@ public class UredajController {
 	}
 
 //-----------------------METODA POST  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
-	@RequestMapping(value = "/updateuredaj", method = RequestMethod.POST)
-	public String upUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
+	@RequestMapping(value = "/updateuredaj", method = RequestMethod.PUT)
+	public @ResponseBody String updateUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
 		try {
 			myServis.uredajUpdate(noviuredaj);
 			return "Uređaj je ažuriran";
