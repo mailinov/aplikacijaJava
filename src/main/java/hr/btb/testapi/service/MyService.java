@@ -29,7 +29,6 @@ public class MyService implements MyServiceInterface {
 	}
 
 	public int uredajUpdate(Uredaj uredaj) throws SQLException {
-		// TODO Auto-generated method stub
 		return dao.update(uredaj);
 
 	}

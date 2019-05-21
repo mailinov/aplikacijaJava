@@ -62,6 +62,16 @@ public class Uredaj {
 	private String serial_uredaj;
 	
 	private String tip;
+	
+	private Kvar id_kvara;
+
+	public Kvar getId_kvara() {
+		return id_kvara;
+	}
+
+	public void setId_kvara(Kvar id_kvara) {
+		this.id_kvara = id_kvara;
+	}
 
 
 }

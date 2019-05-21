@@ -1,18 +1,36 @@
 package hr.btb.testapi.model;
 
 public class User {
-	private int id;
+	private long id;
 	private String ime;
 	private String prezime;
-	private String email;
-	private String adresa;
+	private String mail;
+	private String korisnicko_ime;
+	private String lozinka;
+	private String kontakt_broj;
 	private Rola rola;
 
-	public int getId() {
+	public String getKontakt_broj() {
+		return kontakt_broj;
+	}
+
+	public void setKontakt_broj(String kontakt_broj) {
+		this.kontakt_broj = kontakt_broj;
+	}
+
+	public String getKorisnicko_ime() {
+		return korisnicko_ime;
+	}
+
+	public void setKorisnicko_ime(String korisnicko_ime) {
+		this.korisnicko_ime = korisnicko_ime;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -32,20 +50,20 @@ public class User {
 		this.prezime = prezime;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMail(String email) {
+		this.mail = email;
 	}
 
-	public String getAdresa() {
-		return adresa;
+	public String getLozinka() {
+		return lozinka;
 	}
 
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
+	public void setLozinka(String adresa) {
+		this.lozinka = adresa;
 	}
 
 	public Rola getRola() {
