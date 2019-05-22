@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import hr.btb.testapi.model.Uredaj;
 import hr.btb.testapi.model.User;
 import hr.btb.testapi.service.UserMyServiceInterface;
 
@@ -27,7 +28,7 @@ public class UserController  {
 	@Autowired
 	UserMyServiceInterface myServisUser;
 
-//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
+//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG USERA PO ID----------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/getuser/{id}", method = RequestMethod.GET)
 	@ResponseBody
@@ -39,23 +40,47 @@ public class UserController  {
 			user = (User) myServisUser.get(id);
 		} catch (Exception e) {
 			log.info("-------------Error :" + e);
+			e.printStackTrace();
 		}
 		return user;
 	}
+
+//-----------------------METODA POST  -------------------------------SPREMANJE USERA----------------------------------------------------------------------------------
+
+
+@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
+	public String saveUser(@RequestBody User noviuser) throws SQLException {
+		
+		try {
+			myServisUser.save(noviuser);
+			return "Spremljeno";
+		} catch (Exception e) {
+			log.info("-------------------------------IS NOT SAVED! " + e);
+			return "Nije spremljeno";
+		}
+	}
+
+	
+
+//-----------------------METODA DELETE  -------------------------------BRISANJE USERA----------------------------------------------------------------------------------
+
+	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.DELETE)
+	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
+		try {
+			myServisUser.delete(id);
+			return "obrisano";
+		} catch (Exception e) {
+			log.info("------------------------------Problem kod brisanja usera! " + e);
+			return "Nije obrisano";
+		}
+
+	}
 /*
-//-----------------------METODA POST  -------------------------------SPREMANJE UREĐAJA----------------------------------------------------------------------------------
+//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE USERA----------------------------------------------------------------------------------
 
 	
 
-//-----------------------METODA DELETE  -------------------------------BRISANJE UREĐAJA----------------------------------------------------------------------------------
-
-	
-
-//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
-
-	
-
-//-----------------------METODA POST  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
+//-----------------------METODA POST  -------------------------------UPDATE USERA----------------------------------------------------------------------------------
 	
 */
 }
