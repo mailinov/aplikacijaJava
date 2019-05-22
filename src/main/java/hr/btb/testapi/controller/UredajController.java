@@ -28,7 +28,7 @@ public class UredajController {
 
 //-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
 
-	@RequestMapping(value = "/geturedaj/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getUredaj/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Uredaj getUredaj(@PathVariable("id") Long id) throws SQLException {
 
@@ -44,7 +44,7 @@ public class UredajController {
 
 //-----------------------METODA POST  -------------------------------SPREMANJE UREĐAJA----------------------------------------------------------------------------------
 
-	@RequestMapping(value = "/saveuredaj", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveUredaj", method = RequestMethod.POST)
 	public String saveUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
 		log.info("----------------------------------------RECEIVED : " + noviuredaj.getSerial_uredaj());
 		try {
@@ -58,7 +58,7 @@ public class UredajController {
 
 //-----------------------METODA DELETE  -------------------------------BRISANJE UREĐAJA----------------------------------------------------------------------------------
 
-	@RequestMapping(value = "/deleteuredaj/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/deleteUredaj/{id}", method = RequestMethod.DELETE)
 	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
 		try {
 			myServis.delete(id);
@@ -86,8 +86,8 @@ public class UredajController {
 		return myList;
 	}
 
-//-----------------------METODA POST  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
-	@RequestMapping(value = "/updateuredaj", method = RequestMethod.PUT)
+//-----------------------METODA PUT  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
+	@RequestMapping(value = "/updateUredaj", method = RequestMethod.PUT)
 	public @ResponseBody String updateUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
 		try {
 			myServis.uredajUpdate(noviuredaj);

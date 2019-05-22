@@ -15,7 +15,7 @@ import hr.btb.testapi.model.User;
 public class UserRowMapper  implements RowMapper<User> {
 
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Rola r = new Rola();
+			/*Rola r = new Rola();
 			r.setId(rs.getInt("r.id"));	
 			r.setTitle(rs.getString("r.title"));
 			
@@ -42,20 +42,20 @@ public class UserRowMapper  implements RowMapper<User> {
 			ur.setProizvodac(rs.getString("ur.proizvodac"));
 			ur.setSerial_uredaj(rs.getString("ur.serial_uredaj"));
 			ur.setTip(rs.getString("ur.tip"));
-			ur.setId_kvara(k);
+			ur.setId_kvara(k);*/
 			
 		
 			User user = new User();
-			user.setId(rs.getLong("u.id"));
+			user.setId(rs.getInt("u.id"));
 			user.setIme(rs.getString("u.ime"));
 			user.setPrezime(rs.getString("u.prezime"));
 			user.setMail(rs.getString("u.mail"));
 			user.setKorisnicko_ime(rs.getString("u.korisnicko_ime"));
 			user.setLozinka(rs.getString("u.lozinka"));
 			user.setKontakt_broj(rs.getString("u.kontakt_broj"));
-			user.setRola(r);
+			/*user.setRola(r);
 			user.setAdresa(a);
-			user.setUredaj(ur);
+			user.setUredaj(ur);*/
 			
 			
 			return user;

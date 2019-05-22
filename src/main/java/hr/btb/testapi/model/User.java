@@ -1,7 +1,7 @@
 package hr.btb.testapi.model;
 
 public class User {
-	private long id;
+	private int id;
 	private String ime;
 	private String prezime;
 	private String mail;
@@ -78,7 +78,7 @@ public class User {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -31,4 +31,8 @@ public class UserMyService implements UserMyServiceInterface {
 		return dao.getAll();
 	}
 
+	public int userUpdate(User user) throws SQLException {
+		return dao.update(user);
+	}
+
 }

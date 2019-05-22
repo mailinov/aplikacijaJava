@@ -22,6 +22,8 @@ public class UserDao implements UserDaoInterface {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+//------------------------------------------------------SPREMANJE JEDNOG USERA ----------------------------------------------------------------------------------
 
 	public int insertOne(User obj) throws SQLException {
 		String sqlQuery = "INSERT INTO user (ime, prezime, mail, korisnicko_ime, lozinka, kontakt_broj, id_rola, id_adresa, id_uredaja ) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -32,6 +34,9 @@ public class UserDao implements UserDaoInterface {
 		return vrati;
 	}
 
+
+//------------------------------------------------------DOBIVANJE JEDNOG USERA PO ID----------------------------------------------------------------------------------
+
 	public User getOne(Long id) throws SQLException {
 		String sqlQuery = "SELECT * FROM user u, rola r, adresa a, uredaj ur, kvar k WHERE u.id=? and u.id_rola = r.id and u.id_adresa = a.id and u.id_uredaja = ur.id and k.id = ur.id_kvara";
 		Object[] args = new Object[] { id };
@@ -40,16 +45,26 @@ public class UserDao implements UserDaoInterface {
 		return user;
 	}
 
-	public int update(User obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+//------------------------------------------------------UPDATE JEDNOG USERA PO ID----------------------------------------------------------------------------------
+	public int update(User obj) throws SQLException  {
+		int vrati = 0;
+		String sqlQuery = "UPDATE user u SET ime=?, prezime=?, mail=?, korisnicko_ime=?, lozinka=?, kontakt_broj=? WHERE id=?;";
+		Object[] arg = new Object[] { obj.getIme(), obj.getPrezime() , obj.getMail(), obj.getKorisnicko_ime(),
+				obj.getLozinka(), obj.getKontakt_broj(), obj.getId() };
+		vrati = jdbcTemplate.update(sqlQuery, arg);
+		return vrati;
+
 	}
+	
+//------------------------------------------------------DOBIVANJE LISTE USERA----------------------------------------------------------------------------------
 
 	public List<User> getAll() throws SQLException {
-		String sqlQuery = "SELECT * FROM user";
+		String sqlQuery = "SELECT * FROM user u";
 		List<User> myList = (List<User>) jdbcTemplate.query(sqlQuery, new UserRowMapper());
 		return myList;
 	}
+
+//------------------------------------------------------BRISANJE JEDNOG USERA PO ID----------------------------------------------------------------------------------	
 
 	public int remove(long id) throws SQLException {
 		{

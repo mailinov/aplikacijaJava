@@ -22,7 +22,7 @@ public class UredajDao implements UredajDaoInterface {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-//------------------------------------------------------SPREMANJE JEDNOG UREĐAJA KAO OBJEKT----------------------------------------------------------------------------------
+//------------------------------------------------------SPREMANJE JEDNOG UREĐAJA----------------------------------------------------------------------------------
 	public int insertOne(Uredaj obj) throws SQLException {
 		String sqlQuery = "INSERT INTO uredaj (imei, model, proizvodac, serial_uredaj, tip) VALUES (?,?,?,?,?)";
 		int vrati = 0;
