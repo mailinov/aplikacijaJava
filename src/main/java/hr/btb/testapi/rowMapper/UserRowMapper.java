@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import hr.btb.testapi.model.Adresa;
+/*import hr.btb.testapi.model.Adresa;
 import hr.btb.testapi.model.Kvar;
 import hr.btb.testapi.model.Rola;
-import hr.btb.testapi.model.Uredaj;
+import hr.btb.testapi.model.Uredaj;*/
 import hr.btb.testapi.model.User;
 
 public class UserRowMapper  implements RowMapper<User> {

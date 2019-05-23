@@ -21,7 +21,7 @@ public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	UserServiceInterface myServisUser;
+	UserServiceInterface UserServis;
 
 //-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG USERA PO ID----------------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ public class UserController {
 		User user = null;
 
 		try {
-			user = (User) myServisUser.get(id);
+			user = (User) UserServis.get(id);
 		} catch (Exception e) {
 			log.info("-------------Error :" + e);
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class UserController {
 	public String saveUser(@RequestBody User noviuser) throws SQLException {
 
 		try {
-			myServisUser.save(noviuser);
+			UserServis.save(noviuser);
 			return "Spremljeno";
 		} catch (Exception e) {
 			log.info("-------------------------------IS NOT SAVED! " + e);
@@ -59,7 +59,7 @@ public class UserController {
 	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
 	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
 		try {
-			myServisUser.delete(id);
+			UserServis.delete(id);
 			return "obrisano";
 		} catch (Exception e) {
 			log.info("------------------------------Problem kod brisanja usera! " + e);
@@ -76,7 +76,7 @@ public class UserController {
 		List<User> myList = new ArrayList<User>();
 
 		try {
-			myList = (List<User>) myServisUser.list();
+			myList = (List<User>) UserServis.list();
 		} catch (Exception e) {
 			log.info("------------------------------Problem kod dohvaćanja liste uredaja!" + e);
 		}
@@ -87,7 +87,7 @@ public class UserController {
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
 	public @ResponseBody String updateUser(@RequestBody User noviuser) throws SQLException {
 		try {
-			myServisUser.userUpdate(noviuser);
+			UserServis.userUpdate(noviuser);
 			return "Uređaj je ažuriran";
 		} catch (Exception e) {
 			log.info("------------------------------Problem ažuriranja uredaja! " + e);

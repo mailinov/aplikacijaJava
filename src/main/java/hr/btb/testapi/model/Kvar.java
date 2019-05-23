@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Kvar {
 
-	private long id;
+	private int id;
 	private String opis_kvara;
 	private String ostecenja;
 	private String dodatne_informacije;
@@ -36,12 +36,12 @@ public class Kvar {
 		this.datum_zavrsetka = datum_zavrsetka;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long l) {
-		this.id = l;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getOpis_kvara() {

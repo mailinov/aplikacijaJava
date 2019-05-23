@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import hr.btb.testapi.model.User;
 import hr.btb.testapi.dao.UserDaoInterface;
 
-@Service("myServiceUser")
+@Service
 public class UserService implements UserServiceInterface {
 
 	@Autowired

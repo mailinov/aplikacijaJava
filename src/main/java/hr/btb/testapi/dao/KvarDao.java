@@ -17,21 +17,22 @@ public class KvarDao implements KvarDaoInterface {
 	
 	public int insertOne(Kvar obj) throws SQLException {
 		String sqlQuery = "INSERT INTO kvar (opis_kvara, ostecenja, dodatne_informacija, datum_zaprimanja, status_uredaja, datum_zavrsetka) VALUES (?,?,?,?,?,?)";	
-		int vrati = jdbcTemplate.update(sqlQuery, obj.getOpis_kvara(), obj.getOstecenja(), obj.getDodatne_informacije(), obj.getDatum_zaprimanja(), obj.getDatum_zavrsetka(), obj.getStatus_uredaja());
+		int vrati = jdbcTemplate.update(sqlQuery, obj.getOpis_kvara(), obj.getOstecenja(), obj.getDodatne_informacije(), obj.getDatum_zaprimanja(), 
+				 obj.getStatus_uredaja(), obj.getDatum_zavrsetka());
 		return vrati;
 	}
 
 	public Kvar getOne(int id) throws SQLException {
-		String sqlQuery = "SELECT opis_kvara, ostecenja, dodatne_informacija, datum_zaprimanja, status_uredaja, datum_zavrsetka FROM kvar WHERE id=?";
-		Object[] args = new Object[] { id };
-		Kvar kvar = jdbcTemplate.queryForObject(sqlQuery, args, new KvarRowMapper());
+		String sqlQuery = "SELECT * FROM kvar WHERE id="+id;
+		Kvar kvar = jdbcTemplate.queryForObject(sqlQuery, new KvarRowMapper());
 
 		return kvar;
 	}
 
 	public int update(Kvar obj) throws SQLException {
 		String sqlQuery = "UPDATE kvar SET opis_kvara=?, ostecenja=?, dodatne_informacija=?, datum_zaprimanja=?, status_uredaja=?, datum_zavrsetka=? WHERE id=?;";
-		Object[] arg = new Object[] {obj.getOpis_kvara(), obj.getOstecenja(), obj.getDodatne_informacije(), obj.getDatum_zaprimanja(), obj.getDatum_zavrsetka(), obj.getStatus_uredaja(), obj.getId() };
+		Object[] arg = new Object[] {obj.getOpis_kvara(), obj.getOstecenja(), obj.getDodatne_informacije(), 
+				obj.getDatum_zaprimanja(), obj.getStatus_uredaja(), obj.getDatum_zavrsetka(), obj.getId() };
 		int vrati =  jdbcTemplate.update(sqlQuery, arg);
 		return vrati;
 	}

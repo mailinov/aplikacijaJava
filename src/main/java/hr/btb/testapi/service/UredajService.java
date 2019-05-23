@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import hr.btb.testapi.dao.UredajDao;
 import hr.btb.testapi.dao.UredajDaoInterface;
 import hr.btb.testapi.model.Uredaj;
 
-@Service("myService")
+@Service
 public class UredajService implements UredajServiceInterface {
 
 	@Autowired

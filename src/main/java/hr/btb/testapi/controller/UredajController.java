@@ -22,7 +22,7 @@ public class UredajController {
 	private static final Logger log = LoggerFactory.getLogger(UredajController.class);
 
 	@Autowired
-	UredajServiceInterface myServis;
+	UredajServiceInterface UredajServis;
 
 //-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ public class UredajController {
 		Uredaj uredaj = null;
 
 		try {
-			uredaj = (Uredaj) myServis.get(id);
+			uredaj = (Uredaj) UredajServis.get(id);
 		} catch (Exception e) {
 			log.info("-------------Error :" + e);
 		}
@@ -44,9 +44,9 @@ public class UredajController {
 
 	@RequestMapping(value = "/saveUredaj", method = RequestMethod.POST)
 	public String saveUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
-		log.info("----------------------------------------RECEIVED : " + noviuredaj.getSerial_uredaj());
+		
 		try {
-			myServis.save(noviuredaj);
+			UredajServis.save(noviuredaj);
 			return "Spremljeno";
 		} catch (Exception e) {
 			log.info("-------------------------------IS NOT SAVED! " + e);
@@ -59,7 +59,7 @@ public class UredajController {
 	@RequestMapping(value = "/deleteUredaj/{id}", method = RequestMethod.DELETE)
 	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
 		try {
-			myServis.delete(id);
+			UredajServis.delete(id);
 			return "obrisano";
 		} catch (Exception e) {
 			log.info("------------------------------Problem kod brisanja uredaj! " + e);
@@ -77,7 +77,7 @@ public class UredajController {
 		List<Uredaj> myList = new ArrayList<Uredaj>();
 
 		try {
-			myList = (List<Uredaj>) myServis.list();
+			myList = (List<Uredaj>) UredajServis.list();
 		} catch (Exception e) {
 			log.info("------------------------------Problem kod dohvaćanja liste uredaja!" + e);
 		}
@@ -88,7 +88,7 @@ public class UredajController {
 	@RequestMapping(value = "/updateUredaj", method = RequestMethod.PUT)
 	public @ResponseBody String updateUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
 		try {
-			myServis.uredajUpdate(noviuredaj);
+			UredajServis.uredajUpdate(noviuredaj);
 			return "Uređaj je ažuriran";
 		} catch (Exception e) {
 			log.info("------------------------------Problem ažuriranja uredaja! " + e);

@@ -2,8 +2,6 @@ package hr.btb.testapi.service;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import hr.btb.testapi.model.Uredaj;
 import hr.btb.testapi.model.User;
 
 public interface UserServiceInterface {
