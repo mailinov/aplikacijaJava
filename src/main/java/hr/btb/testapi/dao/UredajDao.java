@@ -2,22 +2,15 @@ package hr.btb.testapi.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import hr.btb.testapi.controller.UredajController;
 import hr.btb.testapi.model.Uredaj;
 import hr.btb.testapi.rowMapper.UredajRowMapper;
 
 @Component
 public class UredajDao implements UredajDaoInterface {
 
-	private static final Logger log = LoggerFactory.getLogger(UredajController.class);
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -25,22 +18,17 @@ public class UredajDao implements UredajDaoInterface {
 //------------------------------------------------------SPREMANJE JEDNOG UREĐAJA----------------------------------------------------------------------------------
 	public int insertOne(Uredaj obj) throws SQLException {
 		String sqlQuery = "INSERT INTO uredaj (imei, model, proizvodac, serial_uredaj, tip) VALUES (?,?,?,?,?)";
-		int vrati = 0;
-		System.out.println("---------------getSerial=" + obj.getSerial_uredaj());
-		vrati = jdbcTemplate.update(sqlQuery, obj.getImei(), obj.getModel(), obj.getProizvodac(),
+		int vrati = jdbcTemplate.update(sqlQuery, obj.getImei(), obj.getModel(), obj.getProizvodac(),
 				obj.getSerial_uredaj(), obj.getTip());
 		return vrati;
 	}
 
 //------------------------------------------------------UPDATE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
 	public int update(Uredaj obj) throws SQLException {
-		int vrati = 0;
 		String sqlQuery = "UPDATE uredaj SET imei=?, model=?, proizvodac=?, serial_uredaj=?, tip=? WHERE id=?;";
-		Object[] arg = new Object[] { obj.getImei(), obj.getModel(), obj.getProizvodac(), obj.getSerial_uredaj(),
-				obj.getTip(), obj.getId() };
-		vrati = jdbcTemplate.update(sqlQuery, arg);
+		Object[] arg = new Object[] { obj.getImei(), obj.getModel(), obj.getProizvodac(), obj.getSerial_uredaj(), obj.getTip(), obj.getId() };
+		int vrati =  jdbcTemplate.update(sqlQuery, arg);
 		return vrati;
-
 	}
 
 //------------------------------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------

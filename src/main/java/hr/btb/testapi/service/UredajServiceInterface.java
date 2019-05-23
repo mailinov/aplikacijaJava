@@ -5,7 +5,7 @@ import java.util.List;
 
 import hr.btb.testapi.model.Uredaj;
 
-public interface MyServiceInterface {
+public interface UredajServiceInterface {
 
 	int save(Uredaj uredaj) throws SQLException;
 

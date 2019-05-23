@@ -1,8 +1,15 @@
 package hr.btb.testapi.model;
 
 public class Uredaj {
-	
-	
+
+	private Long id;
+	private String imei;
+	private String model;
+	private String proizvodac;
+	private String serial_uredaj;
+	private String tip;
+	private Kvar id_kvara;
+
 	public Long getId() {
 		return id;
 	}
@@ -51,20 +58,6 @@ public class Uredaj {
 		this.tip = tip;
 	}
 
-	private Long id;
-	
-	private String imei;
-	
-	private String model;
-
-	private String proizvodac;
-
-	private String serial_uredaj;
-	
-	private String tip;
-	
-	private Kvar id_kvara;
-
 	public Kvar getId_kvara() {
 		return id_kvara;
 	}
@@ -72,6 +65,5 @@ public class Uredaj {
 	public void setId_kvara(Kvar id_kvara) {
 		this.id_kvara = id_kvara;
 	}
-
 
 }

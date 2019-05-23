@@ -8,7 +8,7 @@ import hr.btb.testapi.model.User;
 import hr.btb.testapi.dao.UserDaoInterface;
 
 @Service("myServiceUser")
-public class UserMyService implements UserMyServiceInterface {
+public class UserService implements UserServiceInterface {
 
 	@Autowired
 	UserDaoInterface dao;

@@ -11,6 +11,7 @@ public class User {
 	private int id_rola;
 	private int id_adresa;
 	private int id_uredaja;
+
 	public int getId_rola() {
 		return id_rola;
 	}
@@ -37,8 +38,6 @@ public class User {
 
 	private Rola rola;
 	private Adresa adresa;
-	
-
 
 	public Adresa getAdresa() {
 		return adresa;

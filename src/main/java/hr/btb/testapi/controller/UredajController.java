@@ -2,9 +2,7 @@ package hr.btb.testapi.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.btb.testapi.model.Uredaj;
-import hr.btb.testapi.service.MyServiceInterface;
+import hr.btb.testapi.service.UredajServiceInterface;
 
 @RestController
 public class UredajController {
@@ -24,7 +22,7 @@ public class UredajController {
 	private static final Logger log = LoggerFactory.getLogger(UredajController.class);
 
 	@Autowired
-	MyServiceInterface myServis;
+	UredajServiceInterface myServis;
 
 //-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
 

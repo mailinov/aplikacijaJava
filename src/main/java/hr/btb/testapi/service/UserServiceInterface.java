@@ -6,7 +6,7 @@ import java.util.List;
 import hr.btb.testapi.model.Uredaj;
 import hr.btb.testapi.model.User;
 
-public interface UserMyServiceInterface {
+public interface UserServiceInterface {
 	
 	User get(long id) throws SQLException;
 	

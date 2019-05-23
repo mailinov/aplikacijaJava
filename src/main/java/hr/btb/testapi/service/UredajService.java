@@ -11,7 +11,7 @@ import hr.btb.testapi.dao.UredajDaoInterface;
 import hr.btb.testapi.model.Uredaj;
 
 @Service("myService")
-public class MyService implements MyServiceInterface {
+public class UredajService implements UredajServiceInterface {
 
 	@Autowired
 	UredajDaoInterface dao;
