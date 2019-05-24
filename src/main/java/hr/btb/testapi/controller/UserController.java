@@ -23,7 +23,25 @@ public class UserController {
 	@Autowired
 	UserServiceInterface UserServis;
 
-//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG USERA PO ID----------------------------------------------------------------------------------
+	//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG USERA PO ID SA SVIM PODACIMA----------------------------------------------------------------------------------
+
+	
+	@RequestMapping(value = "/getUserAll/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public User getUserAll(@PathVariable("id") Long id) throws SQLException {
+
+		User user = null;
+
+		try {
+			user = (User) UserServis.getOneAll(id);
+		} catch (Exception e) {
+			log.info("---------------------------------------------Problem kod dohvaćanja usera: " + e);
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG USERA PO ID----------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
 	@ResponseBody

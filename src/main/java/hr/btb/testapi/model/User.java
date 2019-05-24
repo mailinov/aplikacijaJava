@@ -8,36 +8,9 @@ public class User {
 	private String korisnicko_ime;
 	private String lozinka;
 	private String kontakt_broj;
-	private int id_rola;
-	private int id_adresa;
-	private int id_uredaja;
-
-	public int getId_rola() {
-		return id_rola;
-	}
-
-	public void setId_rola(int id_rola) {
-		this.id_rola = id_rola;
-	}
-
-	public int getId_adresa() {
-		return id_adresa;
-	}
-
-	public void setId_adresa(int id_adresa) {
-		this.id_adresa = id_adresa;
-	}
-
-	public int getId_uredaja() {
-		return id_uredaja;
-	}
-
-	public void setId_uredaja(int id_uredaja) {
-		this.id_uredaja = id_uredaja;
-	}
-
 	private Rola rola;
 	private Adresa adresa;
+	private Uredaj uredaj;
 
 	public Adresa getAdresa() {
 		return adresa;
@@ -54,8 +27,6 @@ public class User {
 	public void setUredaj(Uredaj uredaj) {
 		this.uredaj = uredaj;
 	}
-
-	private Uredaj uredaj;
 
 	public String getKontakt_broj() {
 		return kontakt_broj;

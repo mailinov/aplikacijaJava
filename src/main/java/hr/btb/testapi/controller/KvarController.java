@@ -25,7 +25,7 @@ public class KvarController {
 	KvarServiceInterface KvarServis;
 	
 	
-	//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
+	//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG KVARA PO ID----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/getKvar/{id}", method = RequestMethod.GET)
 		@ResponseBody
@@ -42,7 +42,7 @@ public class KvarController {
 			return kvar;
 		}
 
-	//-----------------------METODA POST  -------------------------------SPREMANJE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA POST  -------------------------------SPREMANJE KVARA----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/saveKvar", method = RequestMethod.POST)
 		public String saveKvar(@RequestBody Kvar novikvar) throws SQLException {
@@ -56,7 +56,7 @@ public class KvarController {
 			}
 		}
 
-	//-----------------------METODA DELETE  -------------------------------BRISANJE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA DELETE  -------------------------------BRISANJE KVARA----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/deleteKvar/{id}", method = RequestMethod.DELETE)
 		public String deleteKvar(@PathVariable Integer id) throws SQLException {
@@ -71,7 +71,7 @@ public class KvarController {
 
 		}
 
-	//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE KVAROVA----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/getAllKvar", method = RequestMethod.GET)
 		@ResponseBody
@@ -88,7 +88,7 @@ public class KvarController {
 			return myList;
 		}
 
-	//-----------------------METODA PUT  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA PUT  -------------------------------UPDATE KVARA----------------------------------------------------------------------------------
 	
 		@RequestMapping(value = "/updateKvar", method = RequestMethod.PUT)
 		public @ResponseBody String updateKvar(@RequestBody Kvar novikvar) throws SQLException {

@@ -19,13 +19,13 @@ import hr.btb.testapi.service.AdresaServiceInterface;
 public class AdresaController{
 	
 	
-	private static final Logger log = LoggerFactory.getLogger(KvarController.class);
+	private static final Logger log = LoggerFactory.getLogger(AdresaController.class);
 
 	@Autowired
 	AdresaServiceInterface AdresaServis;
 	
 	
-	//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
+	//-----------------------METODA GET  -------------------------------DOBIVANJE ADRESE PO ID----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/getAdresa/{id}", method = RequestMethod.GET)
 		@ResponseBody
@@ -42,7 +42,7 @@ public class AdresaController{
 			return adresa;
 		}
 
-	//-----------------------METODA POST  -------------------------------SPREMANJE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA POST  -------------------------------SPREMANJE ADRESE----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/saveAdresa", method = RequestMethod.POST)
 		public String saveAdresa(@RequestBody Adresa novaAdresa) throws SQLException {
@@ -56,7 +56,7 @@ public class AdresaController{
 			}
 		}
 
-	//-----------------------METODA DELETE  -------------------------------BRISANJE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA DELETE  -------------------------------BRISANJE ADRESE----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/deleteAdresa/{id}", method = RequestMethod.DELETE)
 		public String deleteAdresa(@PathVariable Integer id) throws SQLException {
@@ -71,7 +71,7 @@ public class AdresaController{
 
 		}
 
-	//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE ADRESA----------------------------------------------------------------------------------
 
 		@RequestMapping(value = "/getAllAdresa", method = RequestMethod.GET)
 		@ResponseBody
@@ -88,7 +88,7 @@ public class AdresaController{
 			return myList;
 		}
 
-	//-----------------------METODA PUT  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
+	//-----------------------METODA PUT  -------------------------------UPDATE ADRESA----------------------------------------------------------------------------------
 	
 		@RequestMapping(value = "/updateAdresa", method = RequestMethod.PUT)
 		public @ResponseBody String updateKvar(@RequestBody Adresa novaAdresa) throws SQLException {

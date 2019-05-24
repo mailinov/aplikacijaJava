@@ -12,7 +12,12 @@ public class UserService implements UserServiceInterface {
 
 	@Autowired
 	UserDaoInterface dao;
-
+	
+	public User getOneAll(long id) throws SQLException {
+		return dao.getOneAll(id);
+	}
+	
+	
 	public User get(long id) throws SQLException {
 		return dao.getOne(id);
 	}
@@ -22,8 +27,12 @@ public class UserService implements UserServiceInterface {
 	}
 
 	public int save(User user) throws SQLException {
-
-		return dao.insertOne(user);
+		
+		int x = user.getRola().getId();
+		if (x==1) {
+			return dao.insertOne(user);
+		}
+		return dao.insertOneAll(user);
 	}
 
 	public List<User> list() throws SQLException {
@@ -34,5 +43,7 @@ public class UserService implements UserServiceInterface {
 	public int userUpdate(User user) throws SQLException {
 		return dao.update(user);
 	}
+
+	
 
 }
