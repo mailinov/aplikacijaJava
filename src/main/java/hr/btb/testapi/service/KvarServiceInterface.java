@@ -7,6 +7,7 @@ import hr.btb.testapi.model.Kvar;
 
 public interface KvarServiceInterface {
 
+	// Save a single record
 	int save(Kvar kvar) throws SQLException;
 
 	// Get a single record

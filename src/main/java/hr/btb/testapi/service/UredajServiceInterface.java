@@ -7,6 +7,7 @@ import hr.btb.testapi.model.Uredaj;
 
 public interface UredajServiceInterface {
 
+	// Save a single record
 	int save(Uredaj uredaj) throws SQLException;
 
 	// Get a single record

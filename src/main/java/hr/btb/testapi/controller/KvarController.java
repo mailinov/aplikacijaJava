@@ -36,7 +36,7 @@ public class KvarController {
 			try {
 				kvar = KvarServis.get(id);
 			} catch (Exception e) {
-				log.info("-------------Error :" + e);
+				log.info("---------------------------------------------Problem kod dohvaćanja kvara: " + e);
 				e.printStackTrace();
 			}
 			return kvar;
@@ -50,7 +50,8 @@ public class KvarController {
 				KvarServis.save(novikvar);
 				return "Spremljeno";
 			} catch (Exception e) {
-				log.info("-------------------------------IS NOT SAVED! " + e);
+				log.info("---------------------------------------------Problem kod spremanja kvara: " + e);
+				e.printStackTrace();
 				return "Nije spremljeno";
 			}
 		}
@@ -63,7 +64,8 @@ public class KvarController {
 				KvarServis.delete(id);
 				return "obrisano";
 			} catch (Exception e) {
-				log.info("------------------------------Problem kod brisanja uredaj! " + e);
+				log.info("---------------------------------------------Problem kod brisanja kvara: " + e);
+				e.printStackTrace();
 				return "Nije obrisano";
 			}
 
@@ -80,7 +82,8 @@ public class KvarController {
 			try {
 				myList = (List<Kvar>) KvarServis.list();
 			} catch (Exception e) {
-				log.info("------------------------------Problem kod dohvaćanja liste kvara!" + e);
+				log.info("---------------------------------------------Problem kod dohvaćanja liste kvara: " + e);
+				e.printStackTrace();
 			}
 			return myList;
 		}
@@ -93,7 +96,8 @@ public class KvarController {
 				KvarServis.kvarUpdate(novikvar);
 				return "Kvar je ažuriran";
 			} catch (Exception e) {
-				log.info("------------------------------Problem ažuriranja kvara! " + e);
+				log.info("---------------------------------------------Problem kod ažuriranja kvara: " + e);
+				e.printStackTrace();
 				return "Kvar nije ažuriran";
 			}
 

@@ -35,7 +35,8 @@ public class UredajController {
 		try {
 			uredaj = (Uredaj) UredajServis.get(id);
 		} catch (Exception e) {
-			log.info("-------------Error :" + e);
+			log.info("---------------------------------------------Problem kod dohvaćanja uređaja: " + e);
+			e.printStackTrace();
 		}
 		return uredaj;
 	}
@@ -49,7 +50,8 @@ public class UredajController {
 			UredajServis.save(noviuredaj);
 			return "Spremljeno";
 		} catch (Exception e) {
-			log.info("-------------------------------IS NOT SAVED! " + e);
+			log.info("---------------------------------------------Problem kod spremanja uređaja: " + e);
+			e.printStackTrace();
 			return "Nije spremljeno";
 		}
 	}
@@ -62,7 +64,8 @@ public class UredajController {
 			UredajServis.delete(id);
 			return "obrisano";
 		} catch (Exception e) {
-			log.info("------------------------------Problem kod brisanja uredaj! " + e);
+			log.info("---------------------------------------------Problem kod brisanja uredaja: " + e);
+			e.printStackTrace();
 			return "Nije obrisano";
 		}
 
@@ -79,7 +82,8 @@ public class UredajController {
 		try {
 			myList = (List<Uredaj>) UredajServis.list();
 		} catch (Exception e) {
-			log.info("------------------------------Problem kod dohvaćanja liste uredaja!" + e);
+			log.info("---------------------------------------------Problem kod dohvaćanja liste uredaja: " + e);
+			e.printStackTrace();
 		}
 		return myList;
 	}
@@ -91,7 +95,8 @@ public class UredajController {
 			UredajServis.uredajUpdate(noviuredaj);
 			return "Uređaj je ažuriran";
 		} catch (Exception e) {
-			log.info("------------------------------Problem ažuriranja uredaja! " + e);
+			log.info("---------------------------------------------Problem kod ažuriranja uredaja: " + e);
+			e.printStackTrace();
 			return "Uređaj nije ažuriran";
 		}
 

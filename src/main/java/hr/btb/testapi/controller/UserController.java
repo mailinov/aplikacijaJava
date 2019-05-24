@@ -34,7 +34,7 @@ public class UserController {
 		try {
 			user = (User) UserServis.get(id);
 		} catch (Exception e) {
-			log.info("-------------Error :" + e);
+			log.info("---------------------------------------------Problem kod dohvaćanja usera: " + e);
 			e.printStackTrace();
 		}
 		return user;
@@ -49,7 +49,8 @@ public class UserController {
 			UserServis.save(noviuser);
 			return "Spremljeno";
 		} catch (Exception e) {
-			log.info("-------------------------------IS NOT SAVED! " + e);
+			log.info("---------------------------------------------Problem kod spremanja usera: " + e);
+			e.printStackTrace();
 			return "Nije spremljeno";
 		}
 	}
@@ -62,7 +63,8 @@ public class UserController {
 			UserServis.delete(id);
 			return "obrisano";
 		} catch (Exception e) {
-			log.info("------------------------------Problem kod brisanja usera! " + e);
+			log.info("---------------------------------------------Problem kod brisanja usera: " + e);
+			e.printStackTrace();
 			return "Nije obrisano";
 		}
 
@@ -78,7 +80,8 @@ public class UserController {
 		try {
 			myList = (List<User>) UserServis.list();
 		} catch (Exception e) {
-			log.info("------------------------------Problem kod dohvaćanja liste uredaja!" + e);
+			log.info("---------------------------------------------Problem kod dohvaćanja liste usera: " + e);
+			e.printStackTrace();
 		}
 		return myList;
 	}
@@ -90,7 +93,8 @@ public class UserController {
 			UserServis.userUpdate(noviuser);
 			return "Uređaj je ažuriran";
 		} catch (Exception e) {
-			log.info("------------------------------Problem ažuriranja uredaja! " + e);
+			log.info("---------------------------------------------Problem kod ažuriranja usera: " + e);
+			e.printStackTrace();
 			return "Uređaj nije ažuriran";
 		}
 
