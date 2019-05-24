@@ -22,7 +22,7 @@ import hr.btb.testapi.model.User;
 @Repository
 public class MailBuilder {
 
-	// Method for sending email
+	// Method za slanje mail-a
 	public static void send(Email email) throws UnsupportedEncodingException, MessagingException {
 
 		Properties props = propertiesInitialization();
@@ -72,6 +72,7 @@ public class MailBuilder {
 		return message;
 	}
 
+	// inicjalizacija maila sa kojeg se šalje
 	private static Properties propertiesInitialization() {
 
 		Properties props = System.getProperties();
@@ -90,23 +91,20 @@ public class MailBuilder {
 
 		String[] to = null;
 		String subject = "";
-		String body = "";
-		StringBuilder mailTekst2 = null;
+		StringBuilder mailTekst = null;
 
-		
 		to = new String[] { "mario.ilinovic@btb.hr", ((User) user).getMail() };
 
 		subject = "Novi user";
-		body = "test";
-		mailTekst2 = new StringBuilder();
+		mailTekst = new StringBuilder();
 
-		mailTekst2.append("<h3> Podaci o korisniku </h3>");
-		mailTekst2.append("<p> Ime: <b>" + ((User) user).getIme() + "</b> </p>");
-		mailTekst2.append("<p> Prezime: <b>" + ((User) user).getPrezime() + "</b> </p>");
-		mailTekst2.append("<p> Korisničko ime: <b>" + ((User) user).getKorisnicko_ime() + "</b> </p>");
-		mailTekst2.append("<p> Lozinka: <b>" + ((User) user).getLozinka() + "</b> </p>");
+		mailTekst.append("<h3> Podaci o korisniku </h3>");
+		mailTekst.append("<p> Ime: <b>" + ((User) user).getIme() + "</b> </p>");
+		mailTekst.append("<p> Prezime: <b>" + ((User) user).getPrezime() + "</b> </p>");
+		mailTekst.append("<p> Korisničko ime: <b>" + ((User) user).getKorisnicko_ime() + "</b> </p>");
+		mailTekst.append("<p> Lozinka: <b>" + ((User) user).getLozinka() + "</b> </p>");
 
-		Email email = new Email(to, subject, body, mailTekst2);
+		Email email = new Email(to, subject, mailTekst);
 		send(email);
 
 		return true;

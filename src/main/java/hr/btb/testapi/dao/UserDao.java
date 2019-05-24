@@ -57,9 +57,9 @@ public class UserDao implements UserDaoInterface {
 //------------------------------------------------------UPDATE JEDNOG USERA PO ID----------------------------------------------------------------------------------
 	public int update(User obj) throws SQLException {
 		int vrati = 0;
-		String sqlQuery = "UPDATE user u SET ime=?, prezime=?, mail=?, korisnicko_ime=?, lozinka=?, kontakt_broj=? WHERE id=?;";
+		String sqlQuery = "UPDATE user u SET ime=?, prezime=?, mail=?, korisnicko_ime=?, lozinka=?, kontakt_broj=? WHERE id="+obj.getId();
 		Object[] arg = new Object[] { obj.getIme(), obj.getPrezime(), obj.getMail(), obj.getKorisnicko_ime(),
-				obj.getLozinka(), obj.getKontakt_broj(), obj.getId() };
+				obj.getLozinka(), obj.getKontakt_broj() };
 		vrati = jdbcTemplate.update(sqlQuery, arg);
 		return vrati;
 

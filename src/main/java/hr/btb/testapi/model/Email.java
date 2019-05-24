@@ -1,16 +1,16 @@
 package hr.btb.testapi.model;
 
 public class Email {
-	private String[] to; 
-	private String subject; 
-	private String body; 
+	private String[] to;
+	private String subject;
 	private StringBuilder mailTekst;
-	
-	public Email() {}
-	public Email(String[] to, String subject, String body, StringBuilder mailTekst) {
+
+	public Email() {
+	}
+
+	public Email(String[] to, String subject, StringBuilder mailTekst) {
 		this.to = to;
 		this.subject = subject;
-		this.body = body;
 		this.mailTekst = mailTekst;
 	}
 
@@ -30,14 +30,6 @@ public class Email {
 		this.subject = subject;
 	}
 
-	public String getBody() {
-		return body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
-	}
-
 	public StringBuilder getMailTekst() {
 		return mailTekst;
 	}
@@ -45,6 +37,5 @@ public class Email {
 	public void setMailTekst(StringBuilder mailTekst) {
 		this.mailTekst = mailTekst;
 	}
-	
-	
+
 }

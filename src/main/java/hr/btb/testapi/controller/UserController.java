@@ -23,9 +23,10 @@ public class UserController {
 	@Autowired
 	UserServiceInterface UserServis;
 
-	//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG USERA PO ID SA SVIM PODACIMA----------------------------------------------------------------------------------
+	// -----------------------METODA GET -------------------------------DOBIVANJE
+	// JEDNOG USERA PO ID SA SVIM
+	// PODACIMA----------------------------------------------------------------------------------
 
-	
 	@RequestMapping(value = "/getUserAll/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public User getUserAll(@PathVariable("id") Long id) throws SQLException {
@@ -40,8 +41,10 @@ public class UserController {
 		}
 		return user;
 	}
-	
-	//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG USERA PO ID----------------------------------------------------------------------------------
+
+	// -----------------------METODA GET -------------------------------DOBIVANJE
+	// JEDNOG USERA PO
+	// ID----------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
 	@ResponseBody
@@ -108,7 +111,10 @@ public class UserController {
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
 	public @ResponseBody String updateUser(@RequestBody User noviuser) throws SQLException {
 		try {
-			UserServis.userUpdate(noviuser);
+			int x = UserServis.userUpdate(noviuser);
+			if (x == 0) {
+				return "Uređaj ne postoji u bazi";
+			}
 			return "Uređaj je ažuriran";
 		} catch (Exception e) {
 			log.info("---------------------------------------------Problem kod ažuriranja usera: " + e);
