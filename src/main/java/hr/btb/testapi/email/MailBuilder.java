@@ -102,8 +102,8 @@ public class MailBuilder {
 		mailTekst.append("<h3> Podaci o korisniku </h3>");
 		mailTekst.append("<p> Ime: <b>" + ((User) user).getIme() + "</b> </p>");
 		mailTekst.append("<p> Prezime: <b>" + ((User) user).getPrezime() + "</b> </p>");
-		mailTekst.append("<p> Adresa: <b>" + ((User) user).getAdresa().getUlica() + ","+((User) user).getAdresa().getKucni_broj()+","+((User) user).getAdresa().getPostanski_broj()+","+((User) user).getAdresa().getGrad()+"</b> </p>");
-		
+		//mailTekst.append("<p> Adresa: <b>" + ((User) user).getAdresa().getUlica() + ","+((User) user).getAdresa().getKucni_broj()+","+((User) user).getAdresa().getPostanski_broj()+","+((User) user).getAdresa().getGrad()+"</b> </p>");
+		/*
 		mailTekst.append("<h3> Podaci o uređaju </h3>");
 		mailTekst.append("<p> Imei: <b>" + ((User) user).getUredaj().getImei() + "</b> </p>");
 		mailTekst.append("<p> Model: <b>" + ((User) user).getUredaj().getModel() + "</b> </p>");
@@ -120,7 +120,7 @@ public class MailBuilder {
 		mailTekst.append("<h3> Podaci za prijavu na portal i provjeru statusa uređaja </h3>");
 		mailTekst.append("<p> Korisničko ime: <b>" + ((User) user).getKorisnicko_ime() + "</b> </p>");
 		mailTekst.append("<p> Lozinka: <b>" + ((User) user).getLozinka() + "</b> </p>");
-		
+		*/
 		Email email = new Email(to, subject, mailTekst);
 		send(email);
 
