@@ -11,16 +11,20 @@ import hr.btb.testapi.model.Adresa;
 
 @Service
 public class AdresaService implements AdresaServiceInterface {
-	
+
 	@Autowired
 	AdresaDaoInterface dao;
+
+	public Adresa get(int id) throws SQLException {
+		return dao.getOne(id);
+	}
 
 	public int save(Adresa adresa) throws SQLException {
 		return dao.insertOne(adresa);
 	}
 
-	public Adresa get(int id) throws SQLException {
-		return dao.getOne(id);
+	public int delete(int id) throws SQLException {
+		return dao.remove(id);
 	}
 
 	public List<Adresa> list() throws SQLException {
@@ -29,10 +33,6 @@ public class AdresaService implements AdresaServiceInterface {
 
 	public int adresaUpdate(Adresa adresa) throws SQLException {
 		return dao.update(adresa);
-	}
-
-	public int delete(int id) throws SQLException {
-		return dao.remove(id);
 	}
 
 }

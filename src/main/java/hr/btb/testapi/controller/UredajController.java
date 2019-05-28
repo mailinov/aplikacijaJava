@@ -24,8 +24,8 @@ public class UredajController {
 	@Autowired
 	UredajServiceInterface UredajServis;
 
-//-----------------------METODA GET  -------------------------------DOBIVANJE JEDNOG UREĐAJA PO ID----------------------------------------------------------------------------------
-
+//-----------------------METODA GET - DOBIVANJE JEDNOG UREĐAJA PO ID-------------------------------------
+	
 	@RequestMapping(value = "/getUredaj/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Uredaj getUredaj(@PathVariable("id") Long id) throws SQLException {
@@ -41,8 +41,8 @@ public class UredajController {
 		return uredaj;
 	}
 
-//-----------------------METODA POST  -------------------------------SPREMANJE UREĐAJA----------------------------------------------------------------------------------
-
+//-----------------------METODA POST - SPREMANJE UREĐAJA------------------------------------------------
+	
 	@RequestMapping(value = "/saveUredaj", method = RequestMethod.POST)
 	public String saveUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
 		
@@ -56,8 +56,8 @@ public class UredajController {
 		}
 	}
 
-//-----------------------METODA DELETE  -------------------------------BRISANJE UREĐAJA----------------------------------------------------------------------------------
-
+//-----------------------METODA DELETE - BRISANJE UREĐAJA-------------------------------------------
+	
 	@RequestMapping(value = "/deleteUredaj/{id}", method = RequestMethod.DELETE)
 	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
 		try {
@@ -71,7 +71,8 @@ public class UredajController {
 
 	}
 
-//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE UREĐAJA----------------------------------------------------------------------------------
+//-----------------------METODA GET - DOBIVANJE LISTE UREĐAJA-------------------------------------
+	
 
 	@RequestMapping(value = "/getAllUredaji", method = RequestMethod.GET)
 	@ResponseBody
@@ -88,7 +89,8 @@ public class UredajController {
 		return myList;
 	}
 
-//-----------------------METODA PUT  -------------------------------UPDATE UREĐAJA----------------------------------------------------------------------------------
+//-----------------------METODA PUT - UPDATE UREĐAJA-------------------------------------------------
+	
 	@RequestMapping(value = "/updateUredaj", method = RequestMethod.PUT)
 	public @ResponseBody String updateUredaj(@RequestBody Uredaj noviuredaj) throws SQLException {
 		try {

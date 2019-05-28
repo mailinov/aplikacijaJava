@@ -59,7 +59,8 @@ public class UserRowMapper implements RowMapper<User> {
 			ur.setSerial_uredaj(rs.getString("ur.serial_uredaj"));
 			ur.setTip(rs.getString("ur.tip"));
 
-			ur.setId_kvara(k);
+			//ur.setId_kvara(k);
+			ur.setKvar(k);
 			user.setRola(r);
 			user.setAdresa(a);
 			user.setUredaj(ur);

@@ -18,17 +18,19 @@ public class UserService implements UserServiceInterface {
 	MailBuilder mail;
 
 	public User getOneAll(long id) throws SQLException {
-		return dao.getOneAll(id);
+		try {
+			return dao.getOneAll(id);
+		} catch (Exception e) {
+			System.out.println("--------------------------- Problem kod servisa ");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public User get(long id) throws SQLException {
 
 		return dao.getOne(id);
 
-	}
-
-	public int delete(long id) throws SQLException {
-		return dao.remove(id);
 	}
 
 	public int save(User user) throws SQLException {
@@ -39,11 +41,13 @@ public class UserService implements UserServiceInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		int x = user.getRola().getId();
-		if (x == 1) {
-			return dao.insertOne(user);
-		}
-		return dao.insertOneAll(user);
+
+		return dao.insertOne(user);
+
+	}
+
+	public int delete(long id) throws SQLException {
+		return dao.remove(id);
 	}
 
 	public List<User> list() throws SQLException {

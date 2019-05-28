@@ -10,35 +10,29 @@ import hr.btb.testapi.rowMapper.AdresaRowMapper;
 
 @Component
 public class AdresaDao implements AdresaDaoInterface {
-	
+
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	public int insertOne(Adresa obj) throws SQLException  {
-		String sqlQuery = "INSERT INTO adresa (ulica, kucni_broj, grad, postanski_broj) VALUES (?,?,?,?)";	
-		int vrati = jdbcTemplate.update(sqlQuery, obj.getUlica(), obj.getKucni_broj(), obj.getGrad(), obj.getPostanski_broj());
-		return vrati;
-	}
+	// ------------DOBIVANJE JEDNE ADRESE PO ID---------------
 
 	public Adresa getOne(int id) throws SQLException {
-		String sqlQuery = "SELECT * FROM adresa WHERE id="+id;
+		String sqlQuery = "SELECT * FROM adresa WHERE id=" + id;
 		Adresa adresa = jdbcTemplate.queryForObject(sqlQuery, new AdresaRowMapper());
 
 		return adresa;
 	}
 
-	public int update(Adresa obj) throws SQLException {
-		String sqlQuery = "UPDATE adresa SET ulica=?, kucni_broj=?, grad=?, postanski_broj=? WHERE id=?;";
-		Object[] arg = new Object[] {obj.getUlica(), obj.getKucni_broj(), obj.getGrad(), obj.getPostanski_broj(), obj.getId() };
-		int vrati =  jdbcTemplate.update(sqlQuery, arg);
+	// ------------SPREMANJE ADRESE---------------------------
+
+	public int insertOne(Adresa obj) throws SQLException {
+		String sqlQuery = "INSERT INTO adresa (ulica, kucni_broj, grad, postanski_broj) VALUES (?,?,?,?)";
+		int vrati = jdbcTemplate.update(sqlQuery, obj.getUlica(), obj.getKucni_broj(), obj.getGrad(),
+				obj.getPostanski_broj());
 		return vrati;
 	}
 
-	public List<Adresa> getAll() throws SQLException {
-		String sqlQuery = "SELECT * FROM adresa";
-		List<Adresa> myList = (List<Adresa>) jdbcTemplate.query(sqlQuery, new AdresaRowMapper());
-		return myList;
-	}
+	// ------------BRISANJE ADRESE---------------------------
 
 	public int remove(int id) throws SQLException {
 		String sqlDelete = "DELETE from adresa WHERE id=?";
@@ -46,6 +40,24 @@ public class AdresaDao implements AdresaDaoInterface {
 		jdbcTemplate.update(sqlDelete, args);
 		return 1;
 
+	}
+
+	// ------------DOBIVANJE LISTE SVIH ADRESA --------------
+
+	public List<Adresa> getAll() throws SQLException {
+		String sqlQuery = "SELECT * FROM adresa";
+		List<Adresa> myList = (List<Adresa>) jdbcTemplate.query(sqlQuery, new AdresaRowMapper());
+		return myList;
+	}
+
+	// ------------UPDATE ADRESE----------------------------
+
+	public int update(Adresa obj) throws SQLException {
+		String sqlQuery = "UPDATE adresa SET ulica=?, kucni_broj=?, grad=?, postanski_broj=? WHERE id=?;";
+		Object[] arg = new Object[] { obj.getUlica(), obj.getKucni_broj(), obj.getGrad(), obj.getPostanski_broj(),
+				obj.getId() };
+		int vrati = jdbcTemplate.update(sqlQuery, arg);
+		return vrati;
 	}
 
 }

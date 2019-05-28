@@ -25,8 +25,8 @@ public class AdresaController{
 	AdresaServiceInterface AdresaServis;
 	
 	
-	//-----------------------METODA GET  -------------------------------DOBIVANJE ADRESE PO ID----------------------------------------------------------------------------------
-
+	//-----------------------METODA GET - DOBIVANJE ADRESE PO ID-------------------------------------
+	
 		@RequestMapping(value = "/getAdresa/{id}", method = RequestMethod.GET)
 		@ResponseBody
 		public Adresa getAdresa(@PathVariable("id") int id) throws SQLException {
@@ -42,8 +42,8 @@ public class AdresaController{
 			return adresa;
 		}
 
-	//-----------------------METODA POST  -------------------------------SPREMANJE ADRESE----------------------------------------------------------------------------------
-
+	//-----------------------METODA POST - SPREMANJE ADRESE-------------------------------------------
+		
 		@RequestMapping(value = "/saveAdresa", method = RequestMethod.POST)
 		public String saveAdresa(@RequestBody Adresa novaAdresa) throws SQLException {
 			try {
@@ -56,7 +56,7 @@ public class AdresaController{
 			}
 		}
 
-	//-----------------------METODA DELETE  -------------------------------BRISANJE ADRESE----------------------------------------------------------------------------------
+	//-----------------------METODA DELETE - BRISANJE ADRESE------------------------------------------
 
 		@RequestMapping(value = "/deleteAdresa/{id}", method = RequestMethod.DELETE)
 		public String deleteAdresa(@PathVariable Integer id) throws SQLException {
@@ -71,7 +71,7 @@ public class AdresaController{
 
 		}
 
-	//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE ADRESA----------------------------------------------------------------------------------
+	//-----------------------METODA GET - DOBIVANJE LISTE ADRESA-----------------------------------------
 
 		@RequestMapping(value = "/getAllAdresa", method = RequestMethod.GET)
 		@ResponseBody
@@ -88,7 +88,7 @@ public class AdresaController{
 			return myList;
 		}
 
-	//-----------------------METODA PUT  -------------------------------UPDATE ADRESA----------------------------------------------------------------------------------
+	//-----------------------METODA PUT - UPDATE ADRESA--------------------------------------------------
 	
 		@RequestMapping(value = "/updateAdresa", method = RequestMethod.PUT)
 		public @ResponseBody String updateKvar(@RequestBody Adresa novaAdresa) throws SQLException {

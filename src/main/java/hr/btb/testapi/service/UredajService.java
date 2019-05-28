@@ -14,12 +14,16 @@ public class UredajService implements UredajServiceInterface {
 	@Autowired
 	UredajDaoInterface dao;
 
+	public Uredaj get(long id) throws SQLException {
+		return dao.getOne(id);
+	}
+
 	public int save(Uredaj uredaj) throws SQLException {
 		return dao.insertOne(uredaj);
 	}
 
-	public Uredaj get(long id) throws SQLException {
-		return dao.getOne(id);
+	public int delete(long id) throws SQLException {
+		return dao.remove(id);
 	}
 
 	public List<Uredaj> list() throws SQLException {
@@ -29,10 +33,6 @@ public class UredajService implements UredajServiceInterface {
 	public int uredajUpdate(Uredaj uredaj) throws SQLException {
 		return dao.update(uredaj);
 
-	}
-
-	public int delete(long id) throws SQLException {
-		return dao.remove(id);
 	}
 
 }

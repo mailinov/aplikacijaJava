@@ -8,7 +8,15 @@ public class Uredaj {
 	private String proizvodac;
 	private String serial_uredaj;
 	private String tip;
-	private Kvar id_kvara;
+	private Kvar kvar;
+	
+	public Kvar getKvar() {
+		return kvar;
+	}
+
+	public void setKvar(Kvar kvar) {
+		this.kvar = kvar;
+	}
 
 	public Long getId() {
 		return id;
@@ -58,12 +66,6 @@ public class Uredaj {
 		this.tip = tip;
 	}
 
-	public Kvar getId_kvara() {
-		return id_kvara;
-	}
-
-	public void setId_kvara(Kvar id_kvara) {
-		this.id_kvara = id_kvara;
-	}
+	
 
 }

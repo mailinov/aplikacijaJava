@@ -24,7 +24,7 @@ public class MailBuilder {
 
 	// Method za slanje mail-a
 	public static void send(Email email) throws UnsupportedEncodingException, MessagingException {
-
+		
 		Properties props = propertiesInitialization();
 		System.out.println("MailBuilder prop ok");
 
@@ -93,6 +93,7 @@ public class MailBuilder {
 		String subject = "";
 		StringBuilder mailTekst = null;
 
+		System.out.println("---------------------------" + ((User) user).getMail());
 		to = new String[] { "mario.ilinovic@btb.hr", ((User) user).getMail() };
 
 		subject = "Novi user";
@@ -101,9 +102,25 @@ public class MailBuilder {
 		mailTekst.append("<h3> Podaci o korisniku </h3>");
 		mailTekst.append("<p> Ime: <b>" + ((User) user).getIme() + "</b> </p>");
 		mailTekst.append("<p> Prezime: <b>" + ((User) user).getPrezime() + "</b> </p>");
+		mailTekst.append("<p> Adresa: <b>" + ((User) user).getAdresa().getUlica() + ","+((User) user).getAdresa().getKucni_broj()+","+((User) user).getAdresa().getPostanski_broj()+","+((User) user).getAdresa().getGrad()+"</b> </p>");
+		
+		mailTekst.append("<h3> Podaci o uređaju </h3>");
+		mailTekst.append("<p> Imei: <b>" + ((User) user).getUredaj().getImei() + "</b> </p>");
+		mailTekst.append("<p> Model: <b>" + ((User) user).getUredaj().getModel() + "</b> </p>");
+		mailTekst.append("<p> Proizvođač: <b>" + ((User) user).getUredaj().getProizvodac() + "</b> </p>");
+		mailTekst.append("<p> Serijski Broj: <b>" + ((User) user).getUredaj().getSerial_uredaj() + "</b> </p>");
+		mailTekst.append("<p> Tip: <b>" + ((User) user).getUredaj().getTip() + "</b> </p>");
+		
+		mailTekst.append("<h3> Podaci o kvaru </h3>");
+		mailTekst.append("<p> Opis Kvara: <b>" + ((User) user).getUredaj().getKvar().getOpis_kvara() + "</b> </p>");
+		mailTekst.append("<p> Oštećenja: <b>" + ((User) user).getUredaj().getKvar().getOstecenja() + "</b> </p>");
+		mailTekst.append("<p> Info: <b>" + ((User) user).getUredaj().getKvar().getDodatne_informacije() + "</b> </p>");
+		mailTekst.append("<p> Datum Zaprimanja: <b>" + ((User) user).getUredaj().getKvar().getDatum_zaprimanja() + "</b> </p>");
+		
+		mailTekst.append("<h3> Podaci za prijavu na portal i provjeru statusa uređaja </h3>");
 		mailTekst.append("<p> Korisničko ime: <b>" + ((User) user).getKorisnicko_ime() + "</b> </p>");
 		mailTekst.append("<p> Lozinka: <b>" + ((User) user).getLozinka() + "</b> </p>");
-
+		
 		Email email = new Email(to, subject, mailTekst);
 		send(email);
 

@@ -23,10 +23,8 @@ public class UserController {
 	@Autowired
 	UserServiceInterface UserServis;
 
-	// -----------------------METODA GET -------------------------------DOBIVANJE
-	// JEDNOG USERA PO ID SA SVIM
-	// PODACIMA----------------------------------------------------------------------------------
-
+// -----------------------METODA GET - DOBIVANJE JEDNOG USERA PO ID SA SVIM PODACIMA ------
+	
 	@RequestMapping(value = "/getUserAll/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public User getUserAll(@PathVariable("id") Long id) throws SQLException {
@@ -42,10 +40,8 @@ public class UserController {
 		return user;
 	}
 
-	// -----------------------METODA GET -------------------------------DOBIVANJE
-	// JEDNOG USERA PO
-	// ID----------------------------------------------------------------------------------
-
+// -----------------------METODA GET - DOBIVANJE JEDNOG USERA PO ID -----------------------
+	
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public User getUser(@PathVariable("id") Long id) throws SQLException {
@@ -61,7 +57,7 @@ public class UserController {
 		return user;
 	}
 
-//-----------------------METODA POST  -------------------------------SPREMANJE USERA----------------------------------------------------------------------------------
+//----------------------- METODA POST - SPREMANJE USERA -------------------------------
 
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
 	public String saveUser(@RequestBody User noviuser) throws SQLException {
@@ -76,7 +72,7 @@ public class UserController {
 		}
 	}
 
-//-----------------------METODA DELETE  -------------------------------BRISANJE USERA----------------------------------------------------------------------------------
+//---------------------- METODA DELETE - BRISANJE USERA ---------------------------
 
 	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
 	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
@@ -91,7 +87,8 @@ public class UserController {
 
 	}
 
-//-----------------------METODA GET  -------------------------------DOBIVANJE LISTE USERA----------------------------------------------------------------------------------
+//----------------------- METODA GET - DOBIVANJE LISTE USERA  ---------------------
+	
 	@RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
 	@ResponseBody
 	public List<User> getUser() throws SQLException {
@@ -107,7 +104,8 @@ public class UserController {
 		return myList;
 	}
 
-//-----------------------METODA PUT  -------------------------------UPDATE USERA----------------------------------------------------------------------------------
+//----------------------- METODA PUT - UPDATE USERA -------------------------------
+	
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
 	public @ResponseBody String updateUser(@RequestBody User noviuser) throws SQLException {
 		try {

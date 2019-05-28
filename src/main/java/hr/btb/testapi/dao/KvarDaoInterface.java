@@ -6,14 +6,14 @@ import hr.btb.testapi.model.Kvar;
 
 public interface KvarDaoInterface {
 
-	public int insertOne(Kvar obj) throws SQLException;
-
 	public Kvar getOne(int id) throws SQLException;
 
-	public int update(Kvar obj) throws SQLException;
+	public int insertOne(Kvar obj) throws SQLException;
+
+	public int remove(int id) throws SQLException;
 
 	public List<Kvar> getAll() throws SQLException;
 
-	public int remove(int id) throws SQLException;
+	public int update(Kvar obj) throws SQLException;
 
 }
