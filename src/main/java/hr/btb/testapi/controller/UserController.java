@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import hr.btb.testapi.model.User;
 import hr.btb.testapi.service.UserServiceInterface;
 
+@CrossOrigin("*")
 @RestController
 public class UserController {
 
@@ -24,10 +26,10 @@ public class UserController {
 	UserServiceInterface UserServis;
 
 // -----------------------METODA GET - DOBIVANJE JEDNOG USERA PO ID SA SVIM PODACIMA ------
-	
+
 	@RequestMapping(value = "/getUserAll/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public User getUserAll(@PathVariable("id") Long id) throws SQLException {
+	public User getUserAll(@PathVariable("id") int id) throws SQLException {
 
 		User user = null;
 
@@ -41,7 +43,7 @@ public class UserController {
 	}
 
 // -----------------------METODA GET - DOBIVANJE JEDNOG USERA PO ID -----------------------
-	
+
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public User getUser(@PathVariable("id") Long id) throws SQLException {
@@ -60,37 +62,38 @@ public class UserController {
 //----------------------- METODA POST - SPREMANJE USERA -------------------------------
 
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-	public String saveUser(@RequestBody User noviuser) throws SQLException {
+	public Boolean saveUser(@RequestBody User noviuser) throws SQLException {
 
 		try {
 			UserServis.save(noviuser);
-			return "Spremljeno";
+			return true;
 		} catch (Exception e) {
 			log.info("---------------------------------------------Problem kod spremanja usera: " + e);
 			e.printStackTrace();
-			return "Nije spremljeno";
+			return null;
 		}
+
 	}
 
 //---------------------- METODA DELETE - BRISANJE USERA ---------------------------
-
+	
 	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
-	public String deleteMemeber(@PathVariable Integer id) throws SQLException {
+	public int deleteMemeber(@PathVariable Integer id) throws SQLException {
+		int obrisano = 0;
 		try {
-			UserServis.delete(id);
-			return "obrisano";
+			obrisano = UserServis.delete(id);
+			return obrisano;
 		} catch (Exception e) {
 			log.info("---------------------------------------------Problem kod brisanja usera: " + e);
 			e.printStackTrace();
-			return "Nije obrisano";
+			return obrisano;
 		}
 
 	}
 
 //----------------------- METODA GET - DOBIVANJE LISTE USERA  ---------------------
-	
+
 	@RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
-	@ResponseBody
 	public List<User> getUser() throws SQLException {
 
 		List<User> myList = new ArrayList<User>();
@@ -105,19 +108,19 @@ public class UserController {
 	}
 
 //----------------------- METODA PUT - UPDATE USERA -------------------------------
-	
-	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
-	public @ResponseBody String updateUser(@RequestBody User noviuser) throws SQLException {
+
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public boolean updateUser(@RequestBody User user) throws SQLException {
 		try {
-			int x = UserServis.userUpdate(noviuser);
+			int x = UserServis.userUpdate(user);
 			if (x == 0) {
-				return "Uređaj ne postoji u bazi";
+				return false;
 			}
-			return "Uređaj je ažuriran";
+			return true;
 		} catch (Exception e) {
 			log.info("---------------------------------------------Problem kod ažuriranja usera: " + e);
 			e.printStackTrace();
-			return "Uređaj nije ažuriran";
+			return false;
 		}
 
 	}

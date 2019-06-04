@@ -7,7 +7,7 @@ import hr.btb.testapi.model.User;
 
 public interface UserDaoInterface {
 
-	public User getOneAll(Long id) throws SQLException;
+	public User getOneAll(int id) throws SQLException;
 
 	public User getOne(Long id) throws SQLException;
 

@@ -11,6 +11,16 @@ public class Kvar {
 	private String status_uredaja;
 	private Date datum_zaprimanja;
 	private Date datum_zavrsetka;
+	private Uredaj uredaj;
+	
+
+	public Uredaj getUredaj() {
+		return uredaj;
+	}
+
+	public void setUredaj(Uredaj uredaj) {
+		this.uredaj = uredaj;
+	}
 
 	public String getStatus_uredaja() {
 		return status_uredaja;

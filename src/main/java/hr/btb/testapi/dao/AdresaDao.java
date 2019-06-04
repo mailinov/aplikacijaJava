@@ -27,9 +27,14 @@ public class AdresaDao implements AdresaDaoInterface {
 
 	public int insertOne(Adresa obj) throws SQLException {
 		String sqlQuery = "INSERT INTO adresa (ulica, kucni_broj, grad, postanski_broj) VALUES (?,?,?,?)";
+		int id=0;
 		int vrati = jdbcTemplate.update(sqlQuery, obj.getUlica(), obj.getKucni_broj(), obj.getGrad(),
 				obj.getPostanski_broj());
-		return vrati;
+		if(vrati!=0) {
+			String sqlQuery1 = "SELECT LAST_INSERT_ID()";
+			id = jdbcTemplate.queryForObject(sqlQuery1, Integer.class);
+		}
+		return id;
 	}
 
 	// ------------BRISANJE ADRESE---------------------------

@@ -10,7 +10,7 @@ public class User {
 	private String kontakt_broj;
 	private Rola rola;
 	private Adresa adresa;
-	private Uredaj uredaj;
+	
 
 	public Adresa getAdresa() {
 		return adresa;
@@ -18,14 +18,6 @@ public class User {
 
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
-	}
-
-	public Uredaj getUredaj() {
-		return uredaj;
-	}
-
-	public void setUredaj(Uredaj uredaj) {
-		this.uredaj = uredaj;
 	}
 
 	public String getKontakt_broj() {
@@ -44,7 +36,7 @@ public class User {
 		this.korisnicko_ime = korisnicko_ime;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

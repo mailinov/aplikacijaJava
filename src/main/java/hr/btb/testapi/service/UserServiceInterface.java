@@ -6,7 +6,7 @@ import hr.btb.testapi.model.User;
 
 public interface UserServiceInterface {
 
-	User getOneAll(long id) throws SQLException;
+	User getOneAll(int id) throws SQLException;
 
 	// Get a single record
 	User get(long id) throws SQLException;
@@ -22,5 +22,7 @@ public interface UserServiceInterface {
 
 	// Update the records
 	public int userUpdate(User user) throws SQLException;
+	
+	public void send(User user) throws SQLException;
 
 }

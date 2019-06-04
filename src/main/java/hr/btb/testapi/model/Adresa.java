@@ -2,15 +2,15 @@ package hr.btb.testapi.model;
 
 public class Adresa {
 	
-	private long id;
+	private int id;
 	private String ulica;
 	private String kucni_broj;
 	private String grad;
 	private String postanski_broj;
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long l) {
+	public void setId(int l) {
 		this.id = l;
 	}
 	public String getUlica() {

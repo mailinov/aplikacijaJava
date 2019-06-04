@@ -27,9 +27,9 @@ public class UredajDao implements UredajDaoInterface {
 	//------------SPREMANJE JEDNOG UREĐAJA------------------------
 
 	public int insertOne(Uredaj obj) throws SQLException {
-		String sqlQuery = "INSERT INTO uredaj (imei, model, proizvodac, serial_uredaj, tip) VALUES (?,?,?,?,?)";
+		String sqlQuery = "INSERT INTO uredaj (imei, model, proizvodac, serial_uredaj, tip, id_usera) VALUES (?,?,?,?,?,?)";
 		int vrati = jdbcTemplate.update(sqlQuery, obj.getImei(), obj.getModel(), obj.getProizvodac(),
-				obj.getSerial_uredaj(), obj.getTip());
+				obj.getSerial_uredaj(), obj.getTip(), obj.getId_usera());
 
 		return vrati;
 	}

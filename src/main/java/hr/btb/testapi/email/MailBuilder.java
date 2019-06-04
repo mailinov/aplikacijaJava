@@ -88,12 +88,11 @@ public class MailBuilder {
 	}
 
 	public boolean sendMail(User user) throws UnsupportedEncodingException, MessagingException {
-
+		
 		String[] to = null;
 		String subject = "";
 		StringBuilder mailTekst = null;
 
-		System.out.println("---------------------------" + ((User) user).getMail());
 		to = new String[] { "mario.ilinovic@btb.hr", ((User) user).getMail() };
 
 		subject = "Novi user";
@@ -102,6 +101,12 @@ public class MailBuilder {
 		mailTekst.append("<h3> Podaci o korisniku </h3>");
 		mailTekst.append("<p> Ime: <b>" + ((User) user).getIme() + "</b> </p>");
 		mailTekst.append("<p> Prezime: <b>" + ((User) user).getPrezime() + "</b> </p>");
+		mailTekst.append("<p> E-Mail: <b>" + ((User) user).getMail() + "</b> </p>");
+		mailTekst.append("<p> Ulica: <b>" + ((User) user).getAdresa().getUlica() + "</b> </p>");
+		mailTekst.append("<p> Kućni broj: <b>" + ((User) user).getAdresa().getKucni_broj() + "</b> </p>");
+		mailTekst.append("<p> Poštanski broj : <b>" + ((User) user).getAdresa().getPostanski_broj() + "</b> </p>");
+		mailTekst.append("<p> Model: <b>" + ((User) user).getAdresa().getGrad() + "</b> </p>");
+
 		//mailTekst.append("<p> Adresa: <b>" + ((User) user).getAdresa().getUlica() + ","+((User) user).getAdresa().getKucni_broj()+","+((User) user).getAdresa().getPostanski_broj()+","+((User) user).getAdresa().getGrad()+"</b> </p>");
 		/*
 		mailTekst.append("<h3> Podaci o uređaju </h3>");
@@ -116,11 +121,11 @@ public class MailBuilder {
 		mailTekst.append("<p> Oštećenja: <b>" + ((User) user).getUredaj().getKvar().getOstecenja() + "</b> </p>");
 		mailTekst.append("<p> Info: <b>" + ((User) user).getUredaj().getKvar().getDodatne_informacije() + "</b> </p>");
 		mailTekst.append("<p> Datum Zaprimanja: <b>" + ((User) user).getUredaj().getKvar().getDatum_zaprimanja() + "</b> </p>");
-		
+		*/
 		mailTekst.append("<h3> Podaci za prijavu na portal i provjeru statusa uređaja </h3>");
 		mailTekst.append("<p> Korisničko ime: <b>" + ((User) user).getKorisnicko_ime() + "</b> </p>");
 		mailTekst.append("<p> Lozinka: <b>" + ((User) user).getLozinka() + "</b> </p>");
-		*/
+		
 		Email email = new Email(to, subject, mailTekst);
 		send(email);
 

@@ -17,7 +17,7 @@ public class UserService implements UserServiceInterface {
 	@Autowired
 	MailBuilder mail;
 
-	public User getOneAll(long id) throws SQLException {
+	public User getOneAll(int id) throws SQLException {
 		try {
 			return dao.getOneAll(id);
 		} catch (Exception e) {
@@ -34,15 +34,14 @@ public class UserService implements UserServiceInterface {
 	}
 
 	public int save(User user) throws SQLException {
-
-		try {
-			System.out.println("---------------------------");
-			mail.sendMail(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return dao.insertOne(user);
+		
+		int x = dao.insertOne(user);
+		
+		User user1 = new User();
+		user1 = dao.getOneAll(x);
+		send(user1);
+		
+		return x;
 
 	}
 
@@ -58,16 +57,24 @@ public class UserService implements UserServiceInterface {
 	public int userUpdate(User user) throws SQLException {
 
 		int x = dao.update(user);
-
-		if (x == 1) {
-			try {
-				System.out.println("---------------------------");
-				mail.sendMail(user);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
+		User user1 = new User();
+		user1 = dao.getOneAll(user.getId());
+		
+		if (x != 0) {
+			send(user1);
 		}
 		return x;
+	}
+
+	public void send(User user) throws SQLException {
+		try {
+			System.out.println("---------------------------");
+			mail.sendMail(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

@@ -45,14 +45,14 @@ public class KvarController {
 	//-----------------------METODA POST - SPREMANJE KVARA------------------------------------------
 
 		@RequestMapping(value = "/saveKvar", method = RequestMethod.POST)
-		public String saveKvar(@RequestBody Kvar novikvar) throws SQLException {
+		public boolean saveKvar(@RequestBody Kvar novikvar) throws SQLException {
 			try {
 				KvarServis.save(novikvar);
-				return "Spremljeno";
+				return true;
 			} catch (Exception e) {
 				log.info("---------------------------------------------Problem kod spremanja kvara: " + e);
 				e.printStackTrace();
-				return "Nije spremljeno";
+				return false;
 			}
 		}
 

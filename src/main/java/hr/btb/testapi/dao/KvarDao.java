@@ -26,7 +26,7 @@ public class KvarDao implements KvarDaoInterface {
 	// ------------SPREMANJE KVARA---------------------------
 
 	public int insertOne(Kvar obj) throws SQLException {
-		String sqlQuery = "INSERT INTO kvar (opis_kvara, ostecenja, dodatne_informacija, datum_zaprimanja, status_uredaja, datum_zavrsetka) VALUES (?,?,?,?,?,?)";
+		String sqlQuery = "INSERT INTO kvar (opis_kvara, ostecenja, dodatne_informacije, datum_zaprimanja, status_uredaja, datum_zavrsetka) VALUES (?,?,?,?,?,?)";
 		int vrati = jdbcTemplate.update(sqlQuery, obj.getOpis_kvara(), obj.getOstecenja(), obj.getDodatne_informacije(),
 				obj.getDatum_zaprimanja(), obj.getStatus_uredaja(), obj.getDatum_zavrsetka());
 		return vrati;
